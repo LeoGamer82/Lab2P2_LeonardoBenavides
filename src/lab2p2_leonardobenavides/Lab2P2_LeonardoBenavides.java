@@ -42,8 +42,10 @@ public class Lab2P2_LeonardoBenavides {
                     verFlota();
                     break;
                 case 5:
+                    mejorarInfraestructura();
                     break;
                 case 6:
+                    mejorarNave();
                     break;
                 case 7:
                     break;
@@ -151,7 +153,7 @@ public class Lab2P2_LeonardoBenavides {
 
     }
 
-    public static void mejorarInfraestructura(double creditos) {
+    public static void mejorarInfraestructura() {
 
         System.out.println("Selecciona planeta a mejorar: ");
         verPlanetas();
@@ -207,6 +209,43 @@ public class Lab2P2_LeonardoBenavides {
 
         }
 
+    }
+    public static void mejorarNave(){
+       
+        System.out.println("-- Se le encargo a los mecanicos  sulusteanos de la alianza mejorar una nave de la flota! --");
+        System.out.println("Seleccione una nave a mejorar ");
+        verFlota();
+        
+        System.out.println("Elija el indice de la nave ");
+        int seleccionar = leer.nextInt();
+        
+        if(seleccionar>=0&&seleccionar<=naves.size()){
+            System.out.println("Seleccione que desea mejorar: ");
+            System.out.println("1. Ataque  ");
+            System.out.println("2. Defensa ");
+            System.out.println("3. Velocidad ");
+            int opcion = leer.nextInt();
+            switch(opcion){
+                case 1:
+                    System.out.println("Cuanto poder de ataque desea anadir, en grupos de 5? (50 creditos c/u)");
+                    int mejoraAtaque = leer.nextInt();
+                    int multiplicadorAtaque = mejoraAtaque * 5;
+       
+                    System.out.println("Mejora realizada! ");
+                    naves.get(seleccionar).setAtaque(naves.get(seleccionar).getAtaque()+multiplicadorAtaque);
+                    System.out.println("Ataque de " + naves.get(seleccionar).getNombre() + ":" + naves.get(seleccionar).getAtaque());
+                    break;
+                case 2:
+                    System.out.println("Cuanta potencia al generador de escudo desea anadir, en grupos de 5? (50 creditos c/u)");
+                    
+                    break;
+                case 3:
+                    System.out.println("Cuanto velocidad desea anadir, en grupos de 5? (50 creditos c/u)");
+                    
+                    break;
+            }
+        }
+            
     }
 
 }
