@@ -123,6 +123,10 @@ public class Lab2P2_LeonardoBenavides {
     }
 
     public static void verPlanetas() {
+        if (planetasImperial.isEmpty() && planetasAlianza.isEmpty()) {
+            System.out.println("*** Conectando a la base de datos de Yavin 4 *** ");
+            System.out.println("** La Conexion a la base de datos de Yavin fallo, esta seguro de haber descubierto planetas?**");
+        }
         System.out.println("*** Conectando a la base de datos de Yavin 4 *** ");
         System.out.println("Elija el planeta que desea ver:  ");
         System.out.println("1. Planetas en espacio imperial ");
@@ -146,6 +150,9 @@ public class Lab2P2_LeonardoBenavides {
     }
 
     public static void verFlota() {
+        if (naves.isEmpty()) {
+            System.out.println("Debe agregar naves! ");
+        }
         System.out.println("Naves en la flota rebelde: ");
         for (int indice = 0; indice < naves.size(); indice++) {
             naves.get(indice).informacion();
@@ -210,42 +217,54 @@ public class Lab2P2_LeonardoBenavides {
         }
 
     }
-    public static void mejorarNave(){
-       
+
+    public static void mejorarNave() {
+        if(naves.isEmpty()){
+            System.out.println("No hay naves en su hangar! Agregue naves para que el mecanico las mejore");
+        }
         System.out.println("-- Se le encargo a los mecanicos  sulusteanos de la alianza mejorar una nave de la flota! --");
         System.out.println("Seleccione una nave a mejorar ");
         verFlota();
-        
+
         System.out.println("Elija el indice de la nave ");
         int seleccionar = leer.nextInt();
-        
-        if(seleccionar>=0&&seleccionar<=naves.size()){
+
+        if (seleccionar >= 0 && seleccionar <= naves.size()) {
             System.out.println("Seleccione que desea mejorar: ");
             System.out.println("1. Ataque  ");
             System.out.println("2. Defensa ");
             System.out.println("3. Velocidad ");
             int opcion = leer.nextInt();
-            switch(opcion){
+            switch (opcion) {
                 case 1:
                     System.out.println("Cuanto poder de ataque desea anadir, en grupos de 5? (50 creditos c/u)");
                     int mejoraAtaque = leer.nextInt();
                     int multiplicadorAtaque = mejoraAtaque * 5;
-       
+
                     System.out.println("Mejora realizada! ");
-                    naves.get(seleccionar).setAtaque(naves.get(seleccionar).getAtaque()+multiplicadorAtaque);
-                    System.out.println("Ataque de " + naves.get(seleccionar).getNombre() + ":" + naves.get(seleccionar).getAtaque());
+                    naves.get(seleccionar).setAtaque(naves.get(seleccionar).getAtaque() + multiplicadorAtaque);
+                    System.out.println("Ataque de " + naves.get(seleccionar).getNombre() + ": " + naves.get(seleccionar).getAtaque());
+
                     break;
                 case 2:
                     System.out.println("Cuanta potencia al generador de escudo desea anadir, en grupos de 5? (50 creditos c/u)");
-                    
+                    int mejoraDefensa = leer.nextInt();
+                    int multiplicadorDefensa = mejoraDefensa * 5;
+                    System.out.println("Mejora realizada! ");
+                    naves.get(seleccionar).setEscudos(naves.get(seleccionar).getEscudos() + multiplicadorDefensa);
+                    System.out.println("Defensa de " + naves.get(seleccionar).getNombre() + ": " + naves.get(seleccionar).getEscudos());
                     break;
                 case 3:
                     System.out.println("Cuanto velocidad desea anadir, en grupos de 5? (50 creditos c/u)");
-                    
+                    double mejoraVelocidad = leer.nextInt();
+                    double multiplicadorVelocidad = mejoraVelocidad * 5;
+                    System.out.println("Mejora realizada! ");
+                    naves.get(seleccionar).setVelocidad(naves.get(seleccionar).getVelocidad() + multiplicadorVelocidad);
+                    System.out.println("Velocidad de " + naves.get(seleccionar).getNombre() + ": " + naves.get(seleccionar).getVelocidad());
                     break;
             }
         }
-            
+
     }
 
 }
